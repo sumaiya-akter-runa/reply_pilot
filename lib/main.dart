@@ -17,7 +17,7 @@ void main() {
             child: Padding(
               padding: EdgeInsets.all(24),
               child: Text(
-                'Something went wrong on this screen.\nPlease go back and try again.\nএই পেজে সমস্যা হয়েছে, পেছনে গিয়ে আবার চেষ্টা করুন।',
+                'Something went wrong on this screen.\nPlease go back and try again.',
                 textAlign: TextAlign.center,
               ),
             ),

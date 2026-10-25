@@ -28,7 +28,7 @@ class _ReplyStudioScreenState extends ConsumerState<ReplyStudioScreen> {
     'Shorter': 'Make it shorter',
     'More friendly': 'Make it more friendly and warm',
     'Banglish': 'Rewrite in Banglish (Bengali in English letters)',
-    'বাংলা': 'Rewrite in Bangla script',
+    'Bangla': 'Rewrite in Bangla script',
     'English': 'Rewrite in English',
     'Ask for details': 'Politely ask the customer for size, quantity and address',
   };
@@ -153,7 +153,7 @@ class _ReplyStudioScreenState extends ConsumerState<ReplyStudioScreen> {
       appBar: AppBar(title: Text(widget.lead == null ? 'Reply to customer' : 'Reply to ${widget.lead!.title}')),
       body: ListView(padding: const EdgeInsets.all(16), children: [
         if (_reply == null)
-          const InfoBanner('Paste what the customer wrote on Messenger, tap Generate reply, then Copy the reply and send it.\nMessenger থেকে কাস্টমারের লেখা copy করে এখানে paste করুন, তারপর Generate reply চাপুন।',
+          const InfoBanner('Paste what the customer wrote on Messenger, tap Generate reply, then Copy the reply and send it.',
               icon: Icons.lightbulb_outline, color: Colors.green),
         TextField(
           controller: _message,

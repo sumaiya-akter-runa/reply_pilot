@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import '../core/theme.dart';
 import '../widgets/common.dart';
 
-/// Plain-language guide (English + Bangla) for first-time users.
+/// Plain-language guide for first-time users.
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Widget step(int n, String title, String en, String bn) => Padding(
+    Widget step(int n, String title, String en) => Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: AppCard(
             child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -20,8 +20,6 @@ class HelpScreen extends StatelessWidget {
                   Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
                   const SizedBox(height: 4),
                   Text(en, style: const TextStyle(height: 1.4)),
-                  const SizedBox(height: 4),
-                  Text(bn, style: const TextStyle(height: 1.4, color: Colors.black87)),
                 ]),
               ),
             ]),
@@ -32,25 +30,17 @@ class HelpScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('How to use ReplyPilot')),
       body: ListView(padding: const EdgeInsets.all(16), children: [
         const InfoBanner(
-          'ReplyPilot helps you answer customers faster. It does NOT send messages by itself. You copy the reply and send it on Messenger.\n'
-          'ReplyPilot নিজে কাস্টমারকে মেসেজ পাঠায় না। আপনি reply copy করে Messenger-এ পাঠাবেন।',
+          'ReplyPilot helps you answer customers faster. It does NOT send messages by itself. You copy the reply and send it on Messenger.',
           icon: Icons.lightbulb_outline,
           color: Colors.green,
         ),
-        step(1, 'Set up your shop', 'More > Shop profile. Write your phone, delivery and return rules. The AI answers only from this.',
-            'More > Shop profile-এ ফোন, ডেলিভারি ও রিটার্নের নিয়ম লিখুন। AI এখান থেকেই উত্তর দেয়।'),
-        step(2, 'Add your products', 'Products > Add product. Give price, sizes and stock. Without this the AI cannot tell prices.',
-            'Products-এ পণ্যের দাম, সাইজ ও স্টক দিন। না দিলে AI দাম বলতে পারবে না।'),
-        step(3, 'Reply to a customer', 'Home > Reply to customer. Paste the customer\'s message, tap Generate reply, edit if needed, tap Copy reply, then paste it in Messenger.',
-            'কাস্টমারের মেসেজ paste করুন > Generate reply > দরকারে edit করুন > Copy reply > Messenger-এ paste করে পাঠান।'),
-        step(4, 'Customers', 'A customer is anyone who messaged you. Keep them here and set a status: New, Interested, Follow-up, Ordered, Lost. Tap the (i) icon on the Customers screen to see what each means.',
-            'যারা মেসেজ করেছে তাদের এখানে রাখুন। Status দিন: New (নতুন), Interested (আগ্রহী), Follow-up (আবার মেসেজ দিতে হবে), Ordered (অর্ডার করেছে), Lost (কিনবে না)।'),
-        step(5, 'Follow-up reminders', 'If a customer asked the price and went quiet, set a reminder (tomorrow or in 3 days). On that day it shows on Home under "Need follow-up". Tap Draft and the AI writes a polite message.',
-            'কেউ দাম জেনে চুপ করে গেলে "Tomorrow" বা "In 3 days" চাপুন। সেদিন Home-এ "Need follow-up" দেখাবে। Draft চাপলে AI ভদ্র মেসেজ লিখে দেবে।'),
-        step(6, 'Orders', 'When a customer wants to buy, create an order. Stock goes down automatically. Move it: Confirm > Shipped > Delivered. After delivery you can delete the order if you want (long-press the order). Cancelling gives the stock back.',
-            'কাস্টমার কিনতে চাইলে Order তৈরি করুন। স্টক নিজে কমবে। Confirm > Shipped > Delivered করুন। Delivered হলে চাইলে order চেপে ধরে delete করতে পারেন। Cancel করলে স্টক ফেরত আসে।'),
-        step(7, 'Good to know', 'The AI can make mistakes. If you see the orange "Check before sending" box, read the reply carefully first. Always check the price and size before you send.',
-            'AI ভুল করতে পারে। কমলা "Check before sending" দেখলে পাঠানোর আগে নিজে পড়ে নিন।'),
+        step(1, 'Set up your shop', 'More > Shop profile. Write your phone, delivery and return rules. The AI answers only from this.'),
+        step(2, 'Add your products', 'Products > Add product. Give price, sizes and stock. Without this the AI cannot tell prices.'),
+        step(3, 'Reply to a customer', 'Home > Reply to customer. Paste the customer\'s message, tap Generate reply, edit if needed, tap Copy reply, then paste it in Messenger.'),
+        step(4, 'Customers', 'A customer is anyone who messaged you. Keep them here and set a status: New, Interested, Follow-up, Ordered, Lost. Tap the (i) icon on the Customers screen to see what each means.'),
+        step(5, 'Follow-up reminders', 'If a customer asked the price and went quiet, set a reminder (tomorrow or in 3 days). On that day it shows on Home under "Need follow-up". Tap Draft and the AI writes a polite message.'),
+        step(6, 'Orders', 'When a customer wants to buy, create an order. Stock goes down automatically. Move it: Confirm > Shipped > Delivered. After delivery you can delete the order if you want (long-press the order). Cancelling gives the stock back.'),
+        step(7, 'Good to know', 'The AI can make mistakes. If you see the orange "Check before sending" box, read the reply carefully first. Always check the price and size before you send.'),
       ]),
     );
   }

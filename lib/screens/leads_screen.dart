@@ -54,7 +54,7 @@ class _LeadsScreenState extends ConsumerState<LeadsScreen> {
       body: Column(children: [
         const Padding(
           padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
-          child: InfoBanner('People who messaged you. Track who ordered and who needs a reply.\nযারা আপনাকে মেসেজ করেছে তাদের তালিকা। (i) চাপলে status-এর মানে দেখুন।'),
+          child: InfoBanner('People who messaged you. Track who ordered and who needs a reply. Tap (i) to see what each status means.'),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
@@ -78,7 +78,7 @@ class _LeadsScreenState extends ConsumerState<LeadsScreen> {
             data: (all) {
               final list = all.where((l) => l.customerName.toLowerCase().contains(_q) || l.phone.contains(_q)).toList();
               if (list.isEmpty) {
-                return const EmptyState('No customers here yet. Tap "Add customer" when someone messages you.\nকেউ মেসেজ করলে "Add customer" চাপুন।', icon: Icons.people_outline);
+                return const EmptyState('No customers here yet. Tap "Add customer" when someone messages you.', icon: Icons.people_outline);
               }
               return RefreshIndicator(
                 onRefresh: () => safeRefresh(ref.refresh(leadsProvider(_status).future)),

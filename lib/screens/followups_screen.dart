@@ -19,8 +19,7 @@ class FollowupsScreen extends ConsumerWidget {
         const Padding(
           padding: EdgeInsets.fromLTRB(12, 8, 12, 0),
           child: InfoBanner(
-            'These customers need a message from you. Tap Draft and the AI writes a polite follow-up.\n'
-            'আজ এই কাস্টমারদের আবার মেসেজ দিতে হবে। Draft চাপলে AI মেসেজ লিখে দেবে।',
+            'These customers need a message from you. Tap Draft and the AI writes a polite follow-up.',
             icon: Icons.notifications_active_outlined,
             color: Colors.orange,
           ),
@@ -30,7 +29,7 @@ class FollowupsScreen extends ConsumerWidget {
             value: f,
             onRetry: () => ref.invalidate(followupsProvider),
             data: (list) => list.isEmpty
-                ? const EmptyState('Nobody to follow up right now.\nTo add a reminder, open a customer and tap "Tomorrow 10 AM" or "In 3 days".\nএখন কাউকে মেসেজ দেওয়ার নেই।', icon: Icons.check_circle_outline)
+                ? const EmptyState('Nobody to follow up right now.\nTo add a reminder, open a customer and tap "Tomorrow 10 AM" or "In 3 days".', icon: Icons.check_circle_outline)
                 : RefreshIndicator(
                     onRefresh: () => safeRefresh(ref.refresh(followupsProvider.future)),
                     child: ListView.separated(

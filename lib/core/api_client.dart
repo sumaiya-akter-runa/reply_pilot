@@ -114,8 +114,7 @@ class ApiClient {
       if (unreachable) {
         throw ApiException(
           'No internet connection or the server cannot be reached.\n'
-          'Check your Wi-Fi / mobile data and try again.\n'
-          'ইন্টারনেট নেই অথবা server পাওয়া যাচ্ছে না। Wi-Fi বা মোবাইল ডেটা চেক করুন।'
+          'Check your Wi-Fi / mobile data and try again.'
           '${kDebugMode ? '\n($apiBaseUrl)' : ''}',
           null,
           true,

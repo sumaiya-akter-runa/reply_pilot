@@ -77,7 +77,7 @@ class DashboardScreen extends ConsumerWidget {
                       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                         const Text('Customer messaged you?', style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700)),
                         const SizedBox(height: 4),
-                        const Text('Paste their message and get a reply in seconds.\nকাস্টমারের মেসেজ paste করুন, রিপ্লাই তৈরি হয়ে যাবে।',
+                        const Text('Paste their message and get a reply in seconds.',
                             style: TextStyle(color: Colors.white, height: 1.35)),
                         const SizedBox(height: 14),
                         FilledButton.icon(
@@ -107,7 +107,7 @@ class DashboardScreen extends ConsumerWidget {
                     _Quick(3, Icons.help_outline, 'How to\nuse', () => _open(context, const HelpScreen())),
                   ]),
                   // ---- today
-                  const SectionTitle('Today', hint: 'আজকের অবস্থা'),
+                  const SectionTitle('Today'),
                   GridView.count(
                     crossAxisCount: 2,
                     shrinkWrap: true,
@@ -130,7 +130,7 @@ class DashboardScreen extends ConsumerWidget {
                     ],
                   ),
                   // ---- customers by status
-                  SectionTitle('Your customers', hint: 'যারা মেসেজ করেছে তাদের অবস্থা'),
+                  SectionTitle('Your customers'),
                   Wrap(spacing: 8, runSpacing: 8, children: [
                     for (final s in leadStatuses)
                       ActionChip(
@@ -227,12 +227,12 @@ class _GettingStarted extends StatelessWidget {
       onTap: ok ? null : f,
     );
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      SectionTitle('Get started ($done of 3 done)', hint: 'শুরু করার ৩টি ধাপ'),
+      SectionTitle('Get started ($done of 3 done)'),
       AppCard(
         child: Column(children: [
-          step(shopDone, '1. Add your shop details', 'ফোন নম্বর, ডেলিভারি ও রিটার্ন নিয়ম লিখুন', onShop),
-          step(productsDone, '2. Add your products', 'পণ্যের দাম, সাইজ ও স্টক দিন', onProduct),
-          step(replyDone, '3. Try your first AI reply', 'একটা কাস্টমার মেসেজ দিয়ে দেখুন', onReply),
+          step(shopDone, '1. Add your shop details', 'Phone, delivery and return rules', onShop),
+          step(productsDone, '2. Add your products', 'Price, sizes and stock', onProduct),
+          step(replyDone, '3. Try your first AI reply', 'Paste a customer message and see', onReply),
         ]),
       ),
     ]);

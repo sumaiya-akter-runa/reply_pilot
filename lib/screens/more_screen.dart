@@ -74,7 +74,7 @@ class MoreScreen extends ConsumerWidget {
               child: Material(
                 color: Colors.transparent,
                 child: Column(children: [
-                  item(Icons.help_outline, 'How to use ReplyPilot', () => open(const HelpScreen()), sub: 'কীভাবে ব্যবহার করবেন'),
+                  item(Icons.help_outline, 'How to use ReplyPilot', () => open(const HelpScreen())),
                   item(Icons.storefront, 'Shop profile and policies', () => open(const BusinessScreen())),
                   item(Icons.quiz_outlined, 'FAQs (AI uses these)', () => open(const FaqScreen())),
                   item(Icons.notifications_active_outlined, 'Follow-up reminders', () => open(const FollowupsScreen())),

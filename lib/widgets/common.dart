@@ -153,7 +153,7 @@ class _ErrorView extends StatelessWidget {
           if (offline) ...[
             const SizedBox(height: 4),
             Text(
-              'সংযোগ নেই। Wi-Fi চেক করে আবার চেষ্টা করুন।',
+              'Check your Wi-Fi or mobile data.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 13, height: 1.4, color: kInk.withOpacity(0.55)),
             ),
@@ -283,14 +283,14 @@ class InfoBanner extends StatelessWidget {
   );
 }
 
-/// Explains the customer statuses in simple words (English + Bangla).
+/// Explains the customer statuses in simple words.
 Future<void> showStatusHelp(BuildContext context) {
   const rows = [
-    ['new', 'Just messaged you', 'নতুন - এইমাত্র মেসেজ করেছে'],
-    ['interested', 'Asking or thinking about buying', 'আগ্রহী - দাম/সাইজ জানতে চেয়েছে'],
-    ['follow_up', 'You need to message again later', 'আবার মেসেজ দিতে হবে'],
-    ['ordered', 'Placed an order', 'অর্ডার করেছে'],
-    ['lost', 'Not buying', 'কিনবে না'],
+    ['new', 'Just messaged you'],
+    ['interested', 'Asking or thinking about buying'],
+    ['follow_up', 'You need to message again later'],
+    ['ordered', 'Placed an order'],
+    ['lost', 'Not buying'],
   ];
   return showDialog(
     context: context,
@@ -298,7 +298,7 @@ Future<void> showStatusHelp(BuildContext context) {
       title: const Text('What do the statuses mean?'),
       content: SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text('A "customer" here is anyone who messaged you on Messenger.\nযারা আপনাকে মেসেজ করেছে তারাই customer।', style: TextStyle(height: 1.4)),
+          const Text('A "customer" here is anyone who messaged you on Messenger.', style: TextStyle(height: 1.4)),
           const SizedBox(height: 12),
           for (final r in rows)
             Padding(
@@ -306,7 +306,7 @@ Future<void> showStatusHelp(BuildContext context) {
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 SizedBox(width: 92, child: StatusChip(r[0])),
                 const SizedBox(width: 8),
-                Expanded(child: Text('${r[1]}\n${r[2]}', style: const TextStyle(fontSize: 13, height: 1.3))),
+                Expanded(child: Text('${r[1]}', style: const TextStyle(fontSize: 13, height: 1.3))),
               ]),
             ),
         ]),

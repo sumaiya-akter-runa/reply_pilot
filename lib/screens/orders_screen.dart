@@ -15,10 +15,8 @@ Future<bool> deleteOrderFlow(BuildContext context, WidgetRef ref, Order o) async
     context,
     'Delete order #${o.id}?',
     open
-        ? 'This order is still open. It will be removed and its stock returned. This cannot be undone.\n'
-            'এই order মুছে যাবে এবং stock ফেরত আসবে।'
-        : 'It will be removed from your order list and sales totals. This cannot be undone.\n'
-            'এই order আপনার তালিকা ও বিক্রির হিসাব থেকে মুছে যাবে।',
+        ? 'This order is still open. It will be removed and its stock returned. This cannot be undone.'
+        : 'It will be removed from your order list and sales totals. This cannot be undone.',
     ok: 'Delete',
   );
   if (!ok) return false;
@@ -61,7 +59,7 @@ class _OrdersScreenState extends ConsumerState<OrdersScreen> {
             value: orders,
             onRetry: () => ref.invalidate(ordersProvider),
             data: (list) => list.isEmpty
-                ? const EmptyState('No orders yet.\nOpen a customer and tap Order, or use "Create order from this message" in Reply.\nকোনো order নেই।', icon: Icons.receipt_long_outlined)
+                ? const EmptyState('No orders yet.\nOpen a customer and tap Order, or use "Create order from this message" in Reply.', icon: Icons.receipt_long_outlined)
                 : RefreshIndicator(
                     onRefresh: () => safeRefresh(ref.refresh(ordersProvider(_status).future)),
                     child: ListView.builder(
@@ -71,7 +69,7 @@ class _OrdersScreenState extends ConsumerState<OrdersScreen> {
                       itemBuilder: (_, i) {
                         if (i == 0) {
                           return const InfoBanner(
-                            'Tip: press and hold a delivered or cancelled order to delete it.\nDelivered order চেপে ধরে রাখলে delete করতে পারবেন।',
+                            'Tip: press and hold a delivered or cancelled order to delete it.',
                             icon: Icons.touch_app_outlined,
                           );
                         }
