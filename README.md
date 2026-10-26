@@ -9,8 +9,7 @@
 ![Riverpod](https://img.shields.io/badge/State-Riverpod-00B0FF)
 ![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)
 
-[**Download APK**](https://github.com/sumaiya-akter-runa/ReplyPilot_AI/releases/latest) · [Backend Repository](https://github.com/sumaiya-akter-runa/ReplyPilot_Backend)
-
+[**Download APK**](https://github.com/sumaiya-akter-runa/ReplyPilot_AI/releases/latest) 
 </div>
 
 ---
