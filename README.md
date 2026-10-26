@@ -1,6 +1,6 @@
 <div align="center">
 
-# ReplyPilot AI: 
+# ReplyPilot AI
 
 **FastAPI REST API for ReplyPilot AI, which helps Facebook sellers reply faster and track customers, orders, stock and follow-ups.**
 
