@@ -208,7 +208,8 @@ class Extract {
 
 class Dashboard {
   final int newLeadsToday, followupsDue, ordersToday, pendingOrders, lowStockCount;
-  final double revenueToday;
+  final int newLeadsWeek, ordersWeek, newLeadsMonth, ordersMonth;
+  final double revenueToday, revenueWeek, revenueMonth;
   final Map<String, int> leadsByStatus;
   final Usage usage;
   Dashboard.fromJson(Map<String, dynamic> j)
@@ -218,6 +219,12 @@ class Dashboard {
         pendingOrders = _i(j['pending_orders']),
         lowStockCount = _i(j['low_stock_count']),
         revenueToday = _d(j['revenue_today']),
+        newLeadsWeek = _i(j['new_leads_week']),
+        ordersWeek = _i(j['orders_week']),
+        revenueWeek = _d(j['revenue_week']),
+        newLeadsMonth = _i(j['new_leads_month']),
+        ordersMonth = _i(j['orders_month']),
+        revenueMonth = _d(j['revenue_month']),
         leadsByStatus = (j['leads_by_status'] as Map? ?? {}).map((k, v) => MapEntry(k.toString(), _i(v))),
         usage = Usage.fromJson(j['usage'] as Map<String, dynamic>);
 }

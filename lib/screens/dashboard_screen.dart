@@ -14,6 +14,9 @@ import 'product_form_screen.dart';
 import 'reply_studio_screen.dart';
 import 'usage_screen.dart';
 
+/// Which period the Overview cards show: 'today' | 'week' | 'month'.
+final dashPeriodProvider = StateProvider<String>((ref) => 'today');
+
 class DashboardScreen extends ConsumerWidget {
   final void Function(int tab) goToTab;
   const DashboardScreen({super.key, required this.goToTab});
@@ -50,6 +53,7 @@ class DashboardScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dash = ref.watch(dashboardProvider);
+    final period = ref.watch(dashPeriodProvider);
     final me = ref.watch(meProvider);
     final products = ref.watch(productsProvider);
     return Scaffold(
@@ -106,8 +110,22 @@ class DashboardScreen extends ConsumerWidget {
                     _Quick(2, Icons.shopping_bag_outlined, 'New\norder', () => _open(context, const OrderBuilderScreen())),
                     _Quick(3, Icons.help_outline, 'How to\nuse', () => _open(context, const HelpScreen())),
                   ]),
-                  // ---- today
-                  const SectionTitle('Today'),
+                  // ---- overview (today / this week / this month)
+                  const SectionTitle('Overview'),
+                  Wrap(spacing: 8, children: [
+                    for (final p in const [['today', 'Today'], ['week', 'This week'], ['month', 'This month']])
+                      ChoiceChip(
+                        label: Text(p[1]),
+                        selected: period == p[0],
+                        selectedColor: kOrange.withOpacity(0.2),
+                        labelStyle: TextStyle(fontWeight: FontWeight.w600, color: period == p[0] ? kDeep : kInk),
+                        onSelected: (_) => ref.read(dashPeriodProvider.notifier).state = p[0],
+                      ),
+                  ]),
+                  const SizedBox(height: 4),
+                  const Text('Follow-ups, pending orders and low stock always show the current status.',
+                      style: TextStyle(fontSize: 12, color: Colors.black54)),
+                  const SizedBox(height: 10),
                   GridView.count(
                     crossAxisCount: 2,
                     shrinkWrap: true,
@@ -117,11 +135,17 @@ class DashboardScreen extends ConsumerWidget {
                     crossAxisSpacing: 10,
                     children: [
                       for (final (i, s) in <_Stat>[
-                        _Stat('New customers', 'Messaged you today', '${d.newLeadsToday}', Icons.person_add_alt, kOrange, () => goToTab(1)),
+                        _Stat('New customers', 'Messaged you',
+                            '${period == 'week' ? d.newLeadsWeek : period == 'month' ? d.newLeadsMonth : d.newLeadsToday}',
+                            Icons.person_add_alt, kOrange, () => goToTab(1)),
                         _Stat('Need follow-up', 'Message them again', '${d.followupsDue}', Icons.notifications_active,
                             d.followupsDue > 0 ? kDeep : Colors.grey, () => _open(context, const FollowupsScreen())),
-                        _Stat('Orders today', 'New orders', '${d.ordersToday}', Icons.shopping_bag_outlined, kOrange, () => goToTab(3)),
-                        _Stat('Sales today', 'Total amount', taka(d.revenueToday), Icons.payments_outlined, kDeep, () => goToTab(3)),
+                        _Stat('Orders', 'New orders',
+                            '${period == 'week' ? d.ordersWeek : period == 'month' ? d.ordersMonth : d.ordersToday}',
+                            Icons.shopping_bag_outlined, kOrange, () => goToTab(3)),
+                        _Stat('Sales', 'Total amount',
+                            taka(period == 'week' ? d.revenueWeek : period == 'month' ? d.revenueMonth : d.revenueToday),
+                            Icons.payments_outlined, kDeep, () => goToTab(3)),
                         _Stat('To confirm', 'Pending orders', '${d.pendingOrders}', Icons.pending_actions, kOrange, () => goToTab(3)),
                         _Stat('Low stock', 'Running out', '${d.lowStockCount}', Icons.warning_amber,
                             d.lowStockCount > 0 ? Colors.red.shade700 : Colors.grey, () => goToTab(2)),

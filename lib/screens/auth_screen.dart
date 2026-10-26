@@ -5,6 +5,39 @@ import '../core/theme.dart';
 import '../providers.dart';
 import '../widgets/common.dart';
 
+/// Logo shown on the Login / Sign up header (assets/images/img.png). Falls back to an icon if missing.
+class _AuthLogo extends StatelessWidget {
+  const _AuthLogo();
+
+  static const double _size = 92;
+
+  @override
+  Widget build(BuildContext context) {
+    final radius = BorderRadius.circular(_size * 0.22);
+    return Container(
+      width: _size,
+      height: _size,
+      decoration: BoxDecoration(
+        borderRadius: radius,
+        boxShadow: [BoxShadow(color: kInk.withOpacity(0.28), blurRadius: 18, offset: const Offset(0, 6))],
+      ),
+      child: ClipRRect(
+        borderRadius: radius,
+        child: Image.asset(
+          'assets/images/img.png',
+          width: _size,
+          height: _size,
+          fit: BoxFit.cover,
+          errorBuilder: (_, __, ___) => Container(
+            color: kOrange,
+            child: const Icon(Icons.auto_awesome, size: 44, color: Colors.white),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class AuthScreen extends ConsumerStatefulWidget {
   const AuthScreen({super.key});
   @override
@@ -62,16 +95,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                   duration: const Duration(milliseconds: 900),
                   curve: Curves.elasticOut,
                   builder: (_, v, child) => Transform.scale(scale: v, child: child),
-                  child: Container(
-                    width: 76,
-                    height: 76,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      boxShadow: [BoxShadow(color: kInk.withOpacity(0.25), blurRadius: 18, offset: const Offset(0, 6))],
-                    ),
-                    child: const Icon(Icons.auto_awesome, size: 38, color: kOrange),
-                  ),
+                  child: const _AuthLogo(),
                 ),
                 const SizedBox(height: 14),
                 const Text('ReplyPilot AI', style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800)),
@@ -103,19 +127,19 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                         alignment: Alignment.topCenter,
                         child: _register
                             ? Column(children: [
-                                TextFormField(
-                                  controller: _name,
-                                  decoration: const InputDecoration(labelText: 'Your name', border: kBorder, filled: true, fillColor: Colors.white),
-                                  validator: requiredField,
-                                ),
-                                const SizedBox(height: 12),
-                                TextFormField(
-                                  controller: _shop,
-                                  decoration: const InputDecoration(labelText: 'Shop name', border: kBorder, filled: true, fillColor: Colors.white),
-                                  validator: requiredField,
-                                ),
-                                const SizedBox(height: 12),
-                              ])
+                          TextFormField(
+                            controller: _name,
+                            decoration: const InputDecoration(labelText: 'Your name', border: kBorder, filled: true, fillColor: Colors.white),
+                            validator: requiredField,
+                          ),
+                          const SizedBox(height: 12),
+                          TextFormField(
+                            controller: _shop,
+                            decoration: const InputDecoration(labelText: 'Shop name', border: kBorder, filled: true, fillColor: Colors.white),
+                            validator: requiredField,
+                          ),
+                          const SizedBox(height: 12),
+                        ])
                             : const SizedBox(width: double.infinity),
                       ),
                       TextFormField(
